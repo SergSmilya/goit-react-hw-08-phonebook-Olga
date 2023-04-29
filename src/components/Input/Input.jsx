@@ -2,7 +2,7 @@ import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from '../../Redux/Operations';
+import { addContacts } from '../../Redux/Contacts/ContactsOperations';
 
 export default function Input() {
   const dispatch = useDispatch();
