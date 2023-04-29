@@ -3,10 +3,11 @@ import * as yup from 'yup';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from '../../Redux/Contacts/ContactsOperations';
+import { viewContacts } from 'Redux/Contacts/ContactsSelectors';
 
 export default function Input() {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(viewContacts);
 
   const initialValues = {
     name: '',

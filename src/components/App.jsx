@@ -6,16 +6,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllContacts } from 'Redux/Contacts/ContactsOperations';
 import Auth from './Register/Register';
 import LogIn from './LogIn/LogIn';
-import { loggedIn } from 'Redux/Selectors';
+import { loggedIn } from 'Redux/Auth/AuthSelectors';
 import LogOutBtn from './LogOutBtn/LogOutBtn';
+import { filterValue } from 'Redux/Filter/FilterSelectors';
+import { viewContacts } from 'Redux/Contacts/ContactsSelectors';
+import { refreshUser } from 'Redux/Auth/AuthOperations';
 
 export function App() {
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(viewContacts);
+  const filter = useSelector(filterValue);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(loggedIn);
 
   useEffect(() => {
+    dispatch(refreshUser());
     isLoggedIn && dispatch(fetchAllContacts());
   }, [dispatch, isLoggedIn]);
 

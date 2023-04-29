@@ -5,6 +5,7 @@ import {
   logInUsers,
   logOutUsers,
   unSetToken,
+  refreshUsers,
 } from '../../Api';
 
 export const signupUser = createAsyncThunk(
@@ -15,7 +16,7 @@ export const signupUser = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.mesaage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -28,7 +29,7 @@ export const logInUser = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.mesaage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -41,7 +42,26 @@ export const logOutUser = createAsyncThunk(
       unSetToken();
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.mesaage);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  'auth/refreshUser',
+  async (_, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.user.token;
+
+      if (token === null) {
+        return thunkAPI.rejectWithValue();
+      }
+      setToken(token);
+      const { data } = await refreshUsers();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
