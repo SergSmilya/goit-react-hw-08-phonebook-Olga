@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Auth from './Register/Register';
-import LogIn from './LogIn/LogIn';
 import { loggedIn } from 'Redux/Auth/AuthSelectors';
-import LogOutBtn from './LogOutBtn/LogOutBtn';
 import { refreshUser } from 'Redux/Auth/AuthOperations';
-import { NavLink, Route, Routes } from 'react-router-dom';
-import Register from './Register/Register';
+import { Route, Routes } from 'react-router-dom';
 import ContactsPage from 'Pages/ContactsPage';
-import Authentification from './Authentification/Authentification';
+import LogIn from 'Pages/LoginPage';
+import Register from 'Pages/RegisterPage';
+import HomePage from 'Pages/HomePage';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
+import SharedLayout from './SharedLayout/SharedLayout';
 
 export function App() {
   const dispatch = useDispatch();
@@ -20,28 +21,22 @@ export function App() {
 
   return (
     <>
-      <div
-      // style={{
-      //   height: '100vh',
-      //   display: 'block',
-      //   justifyContent: 'center',
-      //   alignItems: 'center',
-      //   fontSize: 20,
-      //   color: '#010101',
-      // }}
-      >
-        <NavLink to="/">Welcome to Phonebook!</NavLink>
-        <NavLink to="/contacts">Contacts</NavLink>
-        {isLoggedIn ? <LogOutBtn /> : <Authentification />}
-      </div>
-      <>
-        <Routes>
-          <Route path="/" element="Home " />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/contacts" element={<ContactsPage />} />
-        </Routes>
-      </>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/login" element={<PublicRoute component={LogIn} />} />
+
+          <Route
+            path="/register"
+            element={<PublicRoute component={Register} />}
+          />
+
+          <Route
+            path="/contacts"
+            element={<PrivateRoute component={ContactsPage} />}
+          />
+        </Route>
+      </Routes>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { signupUser } from 'Redux/Auth/AuthOperations';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { Button } from '@chakra-ui/react';
 
 export default function Register() {
   const initialValues = {
@@ -30,7 +31,9 @@ export default function Register() {
           Password
           <Field name="password" type="text" />
         </label>
-        <button type="submit">Register</button>
+        <Button colorScheme="blue" type="submit">
+          Register
+        </Button>
       </Form>
     </Formik>
   );

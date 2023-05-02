@@ -1,5 +1,6 @@
 import { deleteContacts } from 'Redux/Contacts/ContactsOperations';
 import { useDispatch } from 'react-redux';
+import { Button } from '@chakra-ui/react';
 
 export default function OneContact({ contacts }) {
   const dispatch = useDispatch();
@@ -10,9 +11,13 @@ export default function OneContact({ contacts }) {
       <div>
         {name}: {number}
       </div>
-      <button type="button" onClick={() => dispatch(deleteContacts(id))}>
+      <Button
+        colorScheme="blue"
+        type="button"
+        onClick={() => dispatch(deleteContacts(id))}
+      >
         Delete
-      </button>
+      </Button>
     </li>
   );
 }

@@ -1,6 +1,7 @@
 import { logInUser } from 'Redux/Auth/AuthOperations';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { Button } from '@chakra-ui/react';
 
 export default function LogIn() {
   const dispatch = useDispatch();
@@ -24,7 +25,9 @@ export default function LogIn() {
           Password
           <Field name="password" type="text" />
         </label>
-        <button type="submit">Log In</button>
+        <Button colorScheme="blue" type="submit">
+          Log In
+        </Button>
       </Form>
     </Formik>
   );
