@@ -12,7 +12,7 @@ export default function OneContact({ contacts }) {
         {name}: {number}
       </div>
       <Button
-        colorScheme="blue"
+        colorScheme="purple"
         type="button"
         onClick={() => dispatch(deleteContacts(id))}
       >

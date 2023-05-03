@@ -10,7 +10,7 @@ export default function UserMenu() {
   return (
     <div>
       <p>mango@mail.com</p>
-      <Button colorScheme="blue" type="submit" onClick={onHandleClick}>
+      <Button colorScheme="purple" type="submit" onClick={onHandleClick}>
         Log Out
       </Button>
     </div>
