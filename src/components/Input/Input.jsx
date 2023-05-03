@@ -23,11 +23,12 @@ export default function InputForm() {
       name: '',
       number: '',
     },
-    onSubmit(values) {
+    onSubmit(values, { resetForm }) {
       if (checkName(values.name)) {
         return alert(`${values.name} is already in contacts`);
       }
       dispatch(addContacts(values));
+      resetForm();
     },
 
     validationSchema: yup.object({
